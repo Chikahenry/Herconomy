@@ -8,9 +8,13 @@ const UserList = () => {
   const {users} = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const handleDelete = (username) => {
-    if (loginUser.userType === 'admin') {
-      dispatch(updateUsers(users.filter(user => user.username.toLowerCase() !== username.toLowerCase())));
+  const handleDelete = (accountNumber) => {
+    if(loginUser.accountNumber === accountNumber){
+        alert('Admin canot delete self.');
+        return
+    }
+    if (loginUser.userType === 'admin' ) {
+      dispatch(updateUsers(users.filter(user => user.accountNumber !== accountNumber)));
     } else {
       alert('Only admin users can delete users.');
     }
@@ -24,7 +28,7 @@ const UserList = () => {
           <li key={index}>
             {"User Name: " + user.username +",   Balance: ₦"+ user.balance + ",   Account No:"+ user.accountNumber} 
             {loginUser.userType === 'admin' && (
-              <button className='delete' onClick={() => handleDelete(user.username)}>Delete</button>
+              <button className='delete' onClick={() => handleDelete(user.accountNumber)}>Delete</button>
             )}
           </li>
         ))}

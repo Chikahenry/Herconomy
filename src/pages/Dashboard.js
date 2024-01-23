@@ -21,16 +21,22 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className='dashboard'>
 
-    <div className='dashboard-head'>
-      <h1>Welcome, {user.username}!</h1>
-      <button className='logout' onClick={handleLogout}>Logout</button>
-    </div>
-      <Balance />
-      <TransactionList />
-      {user.userType === 'admin' && <UserList />}
-      <TransferForm />
+        <div className='dashboard-head'>
+            <h1>Welcome, {user.username}!</h1>
+            <button className='logout' onClick={handleLogout}>Logout</button>
+        </div>
+            <Balance />
+        <div className='dashboard-main'>
+            <div className='form'>
+                <TransferForm />
+            </div>
+            <div className='transact'>
+                <TransactionList />
+                {user.userType === 'admin' && <UserList />}
+            </div>
+        </div>
     </div>
   );
 };

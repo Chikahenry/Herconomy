@@ -20,9 +20,13 @@ const TransferForm = () => {
         if (user.accountNumber === recipient)
             return user
       })
-    console.log(userExist)
+      
     if(userExist.length === 0){
         alert('invalid account number');
+    return
+    }
+    if(amount <= 0){
+        alert('invalid amount!!');
     return
     }
     if (currentUser.balance >= amount) {
@@ -70,7 +74,7 @@ const TransferForm = () => {
         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
       </label>
       <br />
-      <button onClick={handleTransfer}>Transfer</button>
+      <button className='login-btn' onClick={handleTransfer}>Transfer</button>
     </div>
   );
 };

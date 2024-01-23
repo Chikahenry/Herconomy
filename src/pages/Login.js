@@ -6,12 +6,12 @@ import { users } from '../mockData';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
 
   const handleLogin = () => {
-    const user = users.find((u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+    const user = users.find((u) => u.accountNumber === accountNumber && u.password === password);
 
     if (user) {
       dispatch(login(user));
@@ -29,8 +29,8 @@ const Login = () => {
     <div class="login">
       <h1>Login</h1>
       <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        Account Number:
+        <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} />
       </label>
       <br />
       <label>
